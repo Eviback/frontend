@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import ApplicationSuccess from './pages/ApplicationSuccess';
+import ApplicationsAdmin from './pages/ApplicationsAdmin';
+import ApplicationDetail from './pages/ApplicationDetail';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/success/:id" element={<ApplicationSuccess />} />
             {/* Остальные страницы добавим позже */}
+            <Route path="/admin" element={<ApplicationsAdmin />} />
+            <Route path="/admin/applications/:id" element={<ApplicationDetail />} />
           </Routes>
         </main>
       </div>

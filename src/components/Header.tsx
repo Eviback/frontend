@@ -8,6 +8,7 @@ export default function Header() {
           <Link to="/" className="hover:underline">Подать заявку</Link>
           <Link to="/admin/applications" className="hover:underline">Список заявок</Link>
           <Link to="/test-scoring" className="hover:underline">Тестовый скоринг</Link>
+          <Link to="/admin" className="hover:underline">Админка (по ID)</Link>
         </nav>
       </div>
     </header>
