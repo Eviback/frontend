@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { dasApi } from '../api/api';
+import { Link } from 'react-router-dom';
 
 interface ApplicationShort {
   id: number;
@@ -14,7 +14,7 @@ interface ApplicationShort {
 }
 
 export default function ApplicationsAdmin() {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [idInput, setIdInput] = useState('');
   const [applications, setApplications] = useState<ApplicationShort[]>([]);
   const [loading, setLoading] = useState(false);
@@ -31,7 +31,7 @@ export default function ApplicationsAdmin() {
     setError('');
 
     try {
-      const response = await dasApi.get(`/api/loan-applications/${id}`);
+      const response = await dasApi.get(`/${id}`);
       const app = response.data;
 
       const shortApp: ApplicationShort = {
@@ -62,8 +62,8 @@ export default function ApplicationsAdmin() {
   };
 
  return (
-  <div className="space-y-12">
-    <h1 className="text-4xl font-bold text-center text-gray-800">Админка: Заявки по ID</h1>
+  <div className="bg-white rounded-3xl shadow-2xl p-10 mt-10">
+    <h1 className="text-4xl font-bold text-center text-gray-800">Просмотр заявки по ID</h1>
 
     <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-2xl shadow-md">
       <label className="block text-xl font-semibold text-gray-700 mb-4">Введите ID заявки:</label>
@@ -71,9 +71,15 @@ export default function ApplicationsAdmin() {
         <div className="flex-1">
           <input
             type="number"
+            min = "0"
+            step = "1"
             value={idInput}
             onChange={(e) => setIdInput(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleLoad()}
+            onKeyDown={(e) => {
+                  if (e.key === '-' || e.key === 'e' || e.key === 'E') {
+                      e.preventDefault();
+                   }
+            }}
             placeholder="Например: 5"
             className="w-full border-2 border-gray-300 rounded-xl px-6 py-4 text-lg focus:ring-4 focus:ring-blue-300 focus:border-blue-500"
           />

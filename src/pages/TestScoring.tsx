@@ -67,7 +67,7 @@ export default function TestScoring() {
                 nameMismatch: false,
             };
 
-            const response = await scoringApi.post('/api/scoring/evaluate', requestBody);
+            const response = await scoringApi.post('/evaluate', requestBody);
             setResult(response.data);
         } catch (err: any) {
             setError(err.response?.data?.message || 'Ошибка при скоринге');
@@ -79,7 +79,7 @@ export default function TestScoring() {
     const totalAdded = result?.scoringResult.rules?.reduce((sum, rule) => sum + rule.added, 0) || 0;
 
     return (
-        <div>
+       <div className="bg-white rounded-3xl shadow-2xl p-10 mt-10">
             <h1 className="text-4xl font-bold text-center mb-12 text-gray-800">Тестовый скоринг</h1>
 
             <div className="bg-white shadow-xl rounded-2xl p-10 mb-12">
@@ -112,15 +112,27 @@ export default function TestScoring() {
 
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">Сумма кредита (RUB)</label>
-                        <input name="amount" type="number" value={formData.amount} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
+                        <input name="amount" type="number"
+                            min="0" step="1"
+                            value={formData.amount}
+                            onChange={handleChange}
+                            onKeyDown={(e) => ['-', 'e', 'E'].includes(e.key) && e.preventDefault()}
+                            required className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
                     </div>
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">Срок (месяцев)</label>
-                        <input name="termMonths" type="number" value={formData.termMonths} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
+                        <input name="termMonths" type="number" min="1" step="1"
+                            value={formData.termMonths} onChange={handleChange}
+                            onKeyDown={(e) => ['-', 'e', 'E'].includes(e.key) && e.preventDefault()}
+                            required className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
                     </div>
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">Ежемесячный доход (RUB)</label>
-                        <input name="monthlyIncome" type="number" value={formData.monthlyIncome} onChange={handleChange} required className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
+                        <input name="monthlyIncome" type="number"
+                            min="0" step="1"
+                            value={formData.monthlyIncome} onChange={handleChange}
+                            onKeyDown={(e) => ['-', 'e', 'E'].includes(e.key) && e.preventDefault()}
+                            required className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
                     </div>
 
                     <div>

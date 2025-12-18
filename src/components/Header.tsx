@@ -2,13 +2,27 @@ import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
-    <header className="bg-blue-600 text-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <nav className="flex space-x-8 text-lg font-medium">
-          <Link to="/" className="hover:underline">    Подать заявку    </Link>
-          <Link to="/admin/applications" className="hover:underline">   Список заявок    </Link>
-          <Link to="/test-scoring" className="hover:underline">    Тестовый скоринг    </Link>
-          <Link to="/admin" className="hover:underline">    Админка (по ID)    </Link>
+    <header className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white shadow-xl sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-6 py-5">
+        <nav className="flex justify-center items-center gap-12 text-xl font-semibold">
+          <Link 
+            to="/" 
+            className="hover:text-yellow-300 transition-colors duration-200 whitespace-nowrap"
+          >
+            Подать заявку
+          </Link>
+          <Link 
+            to="/test-scoring" 
+            className="hover:text-yellow-300 transition-colors duration-200 whitespace-nowrap"
+          >
+            Тестовый скоринг
+          </Link>
+          <Link 
+            to="/admin" 
+            className="hover:text-yellow-300 transition-colors duration-200 whitespace-nowrap"
+          >
+            Просмотр заявки (по ID)
+          </Link>
         </nav>
       </div>
     </header>

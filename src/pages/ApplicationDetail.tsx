@@ -29,7 +29,7 @@ export default function ApplicationDetail() {
   useEffect(() => {
     const fetchApp = async () => {
       try {
-        const response = await dasApi.get(`/api/loan-applications/${id}`);
+        const response = await dasApi.get(`/${id}`);
         setApp(response.data);
       } catch (err) {
         alert('Заявка не найдена');

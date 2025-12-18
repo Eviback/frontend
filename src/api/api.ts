@@ -1,13 +1,14 @@
 import axios from 'axios';
 
+// Везде относительные пути — nginx проксирует
 export const api = axios.create({
-  baseURL: '',  // всегда относительный
+  baseURL: '/api/application',
 });
 
 export const dasApi = axios.create({
-  baseURL: '',  // то же самое
+  baseURL: '/api/loan-applications',
 });
 
 export const scoringApi = axios.create({
-  baseURL: '',  // и здесь
+  baseURL: '/api/scoring',
 });

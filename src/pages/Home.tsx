@@ -46,7 +46,7 @@ export default function Home() {
 
       console.log('Отправляем:', requestBody);  // для отладки
 
-      const response = await api.post('/api/application', requestBody);
+      const response = await api.post('', requestBody);
       const applicationId = response.data.id;
 
       navigate(`/success/${applicationId}`);
@@ -59,7 +59,7 @@ export default function Home() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="bg-white rounded-3xl shadow-2xl p-10 mt-10">
       <h1 className="text-3xl font-bold text-center mb-8">Подать заявку на кредит</h1>
 
       <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-8 space-y-6">
@@ -70,9 +70,24 @@ export default function Home() {
           <input name="birthDate" type="date" placeholder="Дата рождения" required onChange={handleChange} className="border rounded-lg px-4 py-2" />
           <input name="email" type="email" placeholder="Email" required onChange={handleChange} className="border rounded-lg px-4 py-2" />
           <input name="phone" placeholder="Телефон" required onChange={handleChange} className="border rounded-lg px-4 py-2" />
-          <input name="amount" type="number" placeholder="Сумма кредита (RUB)" required onChange={handleChange} className="border rounded-lg px-4 py-2" />
-          <input name="termMonths" type="number" placeholder="Срок (в месяцах)" required onChange={handleChange} className="border rounded-lg px-4 py-2" />
-          <input name="monthlyIncome" type="number" placeholder="Ежемесячный доход (RUB)" required onChange={handleChange} className="col-span-2 border rounded-lg px-4 py-2" />
+          <input name="amount"
+            type="number"
+            min="0" step="1"
+            placeholder="Сумма кредита (RUB)"
+            onKeyDown={(e) => ['-', 'e', 'E'].includes(e.key) && e.preventDefault()}
+            required onChange={handleChange} className="border rounded-lg px-4 py-2" />
+          <input name="termMonths"
+            type="number"
+            min="1" step="1"
+            placeholder="Срок (в месяцах)"
+            onKeyDown={(e) => ['-', 'e', 'E'].includes(e.key) && e.preventDefault()}
+            required onChange={handleChange} className="border rounded-lg px-4 py-2" />
+          <input name="monthlyIncome"
+            type="number"
+            min="0" step="1"
+            placeholder="Ежемесячный доход (RUB)"
+            onKeyDown={(e) => ['-', 'e', 'E'].includes(e.key) && e.preventDefault()}
+            required onChange={handleChange} className="col-span-2 border rounded-lg px-4 py-2" />
         </div>
 
         <button
